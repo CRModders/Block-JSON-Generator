@@ -61,7 +61,7 @@
 				<td><input type="checkbox" id="placeOn1" checked></td>
 				<td><input type="checkbox" id="replaces1" checked></td>
 				<td><input type="checkbox" id="walkThrough1"></td>
-				<td><button onclick="removeBlockState(this.parentNode.parentNode)">Rmove</button></td>
+				<td><button onclick="removeBlockState(this.parentNode.parentNode)">Remove</button></td>
 				<td><button onclick="cloneBlockState(1)" id="cloneButton1">Clone</button></td>
 			</tr>
 			</tbody>
@@ -69,8 +69,8 @@
 	</div>
 	<div class="btn_wrapper">
 		<button onclick="addBlockState()" id="newBlockstateButton">New BlockState</button> <button onclick="generateJSON()">Get JSON</button>
-		<button onclick="copyJSON()" id="copyButton">Copy</button>
-		<button onclick="saveJSON()" id="saveButton">Download</button>
+		<button onclick="copyJSON()" id="copyButton" style="display: none;">Copy</button>
+		<button onclick="saveJSON()" id="saveButton" style="display: none;">Download</button>
 	</div>
     <pre id="generatedCode"></pre>
 

@@ -8,18 +8,18 @@ function addBlockState() {
 	stateRow.innerHTML = `<td><input type="text" id="stateName${totalStates+1}"></td>
 		<td><input type="text" id="modelName${totalStates+1}"></td>
 		<td><input type="text" id="events${totalStates+1}"></td>
+		<td><input type="number" id="lightAttenuation${totalStates+1}" style="width: 100%"></td>
+		<td><input type="number" min="0" max="15" id="red${totalStates+1}"></td>
+		<td><input type="number" min="0" max="15" id="green${totalStates+1}"></td>
+		<td><input type="number" min="0" max="15" id="blue${totalStates+1}"></td>
 		<td><input type="checkbox" id="opaque${totalStates+1}" checked></td>
 		<td><input type="checkbox" id="transparent${totalStates+1}"></td>
 		<td><input type="checkbox" id="slabs${totalStates+1}"></td>
 		<td><input type="checkbox" id="hidden${totalStates+1}"></td>
-		<td><input type="number" id="lightAttenuation${totalStates+1}" style="width: 100%"></td>
 		<td><input type="checkbox" id="breaks${totalStates+1}" checked></td>
 		<td><input type="checkbox" id="placeOn${totalStates+1}" checked></td>
 		<td><input type="checkbox" id="replaces${totalStates+1}" checked></td>
 		<td><input type="checkbox" id="walkThrough${totalStates+1}"></td>
-		<td><input type="number" min="0" max="15" id="red${totalStates+1}"></td>
-		<td><input type="number" min="0" max="15" id="green${totalStates+1}"></td>
-		<td><input type="number" min="0" max="15" id="blue${totalStates+1}"></td>
 		<td><button onclick="removeBlockState(this.parentNode.parentNode)">Remove</button></td>
 		<td><button onclick="cloneBlockState(${totalStates+1})" id="cloneButton${totalStates+1}">Clone</button></td>`
 	document.getElementById('blockBody').append(stateRow)
