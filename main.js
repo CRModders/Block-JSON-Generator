@@ -235,5 +235,5 @@ function importJSON() {
 		};
 		currentRows++;
 	})
-
+	document.getElementById('importModal').style.display='none'
 }
