@@ -90,6 +90,7 @@ function generateJSON() {
 		let modelName = document.getElementById("modelName"+i).value;
 		let blockEventsId = document.getElementById("events"+i).value;
 		let modelsFolder = document.getElementById("modelsFolder").value;
+		modelsFolder = modelsFolder == '' ? '' : modelsFolder + "/";
 		let isOpaque = document.getElementById("opaque"+i).checked;
 		let isTransparent = document.getElementById("transparent"+i).checked;
 		let generateSlabs = document.getElementById("slabs"+i).checked;
@@ -103,7 +104,7 @@ function generateJSON() {
 		let lightLevelGreen = document.getElementById("green"+i).value;
 		let lightLevelBlue = document.getElementById("blue"+i).value;
 		let blockState = {
-			modelName: modelsFolder + "/" + modelName
+			modelName: modelsFolder + modelName
 		};
 		
 		if (isOpaque == false) {
@@ -170,4 +171,69 @@ function saveJSON() {
 
 function copyJSON() {
 	navigator.clipboard.writeText(jsonString)
+}
+
+function openImportModal() {
+	document.getElementById('importModal').style.display='';
+}
+
+function importJSON() {
+	let importedJSON = '';
+	if (document.getElementById('importJSON').value == '') {return} else {importedJSON = JSON.parse(document.getElementById('importJSON').value)};
+	let currentRows = document.getElementById('blockBody').getElementsByTagName("tr").length;
+	let modelsFolder = false
+	if (document.getElementById("stateName"+currentRows).value !== '') {currentRows++};
+	document.getElementById('modId').value = importedJSON.stringId.split(':')[0];
+	document.getElementById('blockId').value = importedJSON.stringId.split(':')[1];
+	Object.entries(importedJSON.blockStates).forEach(([name, state]) => {
+		if (!document.getElementById("stateName"+currentRows)) {addBlockState()}
+		if (state.modelName.split('/').length > 1) {
+			document.getElementById("modelsFolder").value = state.modelName.split('/')[0]
+			document.getElementById("modelName"+currentRows).value = state.modelName.split('/').slice(1).join('/')
+		} else {
+			document.getElementById("modelName"+currentRows).value = state.modelName
+		}
+		document.getElementById("stateName"+currentRows).value = name
+		if (typeof state.blockEventsId !== 'undefined') {
+			document.getElementById("events"+currentRows).value = state.blockEventsId;
+		};
+		if (typeof state.isOpaque !== 'undefined') {
+			document.getElementById("opaque"+currentRows).checked = state.isOpaque;
+		};
+		if (typeof state.isTransparent !== 'undefined') {
+			document.getElementById("transparent"+currentRows).checked = state.isTransparent;
+		};
+		if (typeof state.generateSlabs !== 'undefined') {
+			document.getElementById("slabs"+currentRows).checked = state.generateSlabs;
+		};
+		if (typeof state.catalogHidden !== 'undefined') {
+			document.getElementById("hidden"+currentRows).checked = state.catalogHidden;
+		};
+		if (typeof state.lightAttenuation !== 'undefined') {
+			document.getElementById("lightAttenuation"+currentRows).value = state.lightAttenuation;
+		};
+		if (typeof state.canRaycastForBreak !== 'undefined') {
+			document.getElementById("breaks"+currentRows).checked = state.canRaycastForBreak;
+		};
+		if (typeof state.canRaycastForPlaceOn !== 'undefined') {
+			document.getElementById("placeOn"+currentRows).checked = state.canRaycastForPlaceOn;
+		};
+		if (typeof state.canRaycastForReplace !== 'undefined') {
+			document.getElementById("replaces"+currentRows).checked = state.canRaycastForReplace;
+		};
+		if (typeof state.walkThrough !== 'undefined') {
+			document.getElementById("walkThrough"+currentRows).checked = state.walkThrough;
+		};
+		if (typeof state.lightLevelRed !== 'undefined') {
+			document.getElementById("red"+currentRows).value = state.lightLevelRed;
+		};
+		if (typeof state.lightLevelGreen !== 'undefined') {
+			document.getElementById("green"+currentRows).value = state.lightLevelGreen;
+		};
+		if (typeof state.lightLevelBlue !== 'undefined') {
+			document.getElementById("blue"+currentRows).value = state.lightLevelBlue;
+		};
+		currentRows++;
+	})
+
 }

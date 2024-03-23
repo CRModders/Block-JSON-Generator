@@ -10,6 +10,16 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div class="importModal" style="display: block;" id="importModal">
+		<div class="dim" onclick="document.getElementById('importModal').style.display='none'"></div>
+		<div class="modalContent">
+			<input id="importJSON" type="text" placeholder="Your Block_.JSON">
+			<br>
+			<input type="button" onclick="importJSON()" style="cursor: pointer;" value="Import">
+			<br>
+			<input type="button" onclick="document.getElementById('importModal').style.display='none'" style="cursor: pointer;" value="Close">
+		</div>
+	</div>
     <h2 id="title">Blocks JSON Generator</h2>
 	<div class="modInfo">
 		<label><b>Mod Id: </b></label>
@@ -68,7 +78,9 @@
 		</table>
 	</div>
 	<div class="btn_wrapper">
-		<button onclick="addBlockState()" id="newBlockstateButton">New BlockState</button> <button onclick="generateJSON()">Get JSON</button>
+		<button onclick="openImportModal()" id="openImportModalButton">IMPORT</button>
+		<button onclick="addBlockState()" id="newBlockstateButton">New BlockState</button>
+		<button onclick="generateJSON()">Get JSON</button>
 		<button onclick="copyJSON()" id="copyButton" style="display: none;">Copy</button>
 		<button onclick="saveJSON()" id="saveButton" style="display: none;">Download</button>
 	</div>
